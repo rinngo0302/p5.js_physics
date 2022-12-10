@@ -1,11 +1,11 @@
 const g = 9.8;
-const OY = 1000;
-const TURN_POINT = 3000;
-let e = 0.5;
+const OY = 2000;
+const TURN_POINT = 4000;
+let e = 0.95;
 
 let x = 0;  let y = 400;
-let angle = 50;
-let v0 = 100;
+let angle = 60;
+let v0 = 200;
 let v0x;
 let v0y;
 let increaseX = 0;
@@ -15,9 +15,9 @@ let t = 0;
 let startButton;
 let isStart = false;
 function setup() {
-    createCanvas(5000, OY * 2);
+    createCanvas(5000, OY);
     background(100);
-    line(0, OY, 5000, OY);
+    line(0, OY * 4, 5000, OY * 4);
     line(TURN_POINT, 0, TURN_POINT, OY * 2);
     v0x = v0 * cos(PI / (180 / angle));
     v0y = v0 * sin(PI / (180 / angle)) * -1;
@@ -26,6 +26,11 @@ function setup() {
     startButton.position(0, 0);
     startButton.mousePressed(() => {
         isStart = true;
+    });
+    startButton = createButton("Stop");
+    startButton.position(250, 0);
+    startButton.mousePressed(() => {
+        isStart = false;;
     });
 }
 
@@ -77,9 +82,12 @@ function draw() {
     if (isStart)
     {
         background(100);
-        line(0, OY, 5000, OY);
+        line(0, OY * 4, 5000, OY * 4);
         line(TURN_POINT, 0, TURN_POINT, OY * 2);
         calc();
-        circle(x, y, 20);
+        if (!hasBpundInO && !hasBpundInTurnPoint)
+        {
+            circle(x, y, 100);
+        }
     }
 }
