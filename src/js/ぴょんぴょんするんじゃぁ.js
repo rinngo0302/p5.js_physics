@@ -1,10 +1,10 @@
 const g = 9.8;
 const OY = 2000;
 const TURN_POINT = 4000;
-let e = 0.999;
+let e = 0.9;
 
 let x = 0;  let y = 400;
-let angle = 80;
+let angle = 60;
 let v0 = 150;
 let v0x;
 let v0y;
@@ -34,6 +34,23 @@ function setup() {
     });
 }
 
+function setData()
+{
+    let user_v0 = parseFloat(document.getElementById("v0").value);
+    let user_angle = parseFloat(document.getElementById("angle").value);
+    let user_e = parseFloat(document.getElementById("e").value);
+    if (isNaN(user_v0) || isNaN(user_angle) || isNaN(user_e))
+    {
+        alert("設定するデータの値が正しくありません。");
+        return;
+    }
+    v0 = user_v0; angle = user_angle; e = user_e;
+    v0x = v0 * cos(PI / (180 / angle));
+    v0y = v0 * sin(PI / (180 / angle)) * -1;
+
+    console.log(`初速度: ${v0}\n角度: ${angle}\n反発係数: ${e}\nセット完了!!`);
+}
+
 let oldT = 0;
 let tmpangle = 0;
 let isOnOY = false;
@@ -42,16 +59,16 @@ let ox = 0;
 let countBound = 1;
 let hasBpundInTurnPoint = false;
 let hasBpundInO = false;
+let debug = false;
 function calc()
 {
-    //v0x = v0 * cos(PI / (180 / angle));
-    //v0y = v0 * sin(PI / (180 / angle)) * -1;
     if (x >= TURN_POINT)
     {
         direction *= -1;
         ox = TURN_POINT * countBound;
         hasBpundInTurnPoint = true;
-	angle = random(90);
+        // alert(`x: ${x}\ny: ${y}`);
+        debug = true;
     }
     if (x <= 0 && increaseX != 0)
     {
@@ -59,7 +76,8 @@ function calc()
         direction *= -1;
         countBound++;
         hasBpundInO = true;
-	angle = random(90);
+        // alert(`x: ${x}\ny: ${y}`);
+        debug = true;
     }
 
     increaseX = (v0x * direction) * (t + oldT) + ox * 2;
@@ -75,9 +93,6 @@ function calc()
         t = 0;
         v0y *= e;
         line(x, OY + 10, x, OY - 10);
-	angle = random(90);
-        // textSize(20);
-        // text(`x: ${x}\nt: ${t + oldT}`, x - 20, OY + 60);
     }
 
     t++;

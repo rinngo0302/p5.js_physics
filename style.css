@@ -6,7 +6,7 @@ html, body {
     display: block;
   }
   
-button {
+button, input, label {
   font-size: 100px;
   width: 250px;
 }
