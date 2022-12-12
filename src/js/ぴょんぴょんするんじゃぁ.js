@@ -17,6 +17,7 @@ let isStart = false;
 function setup() {
     createCanvas(5000, OY);
     background(100);
+    text("※めっちゃ縮小してください！", 0, 200);
     line(0, OY * 4, 5000, OY * 4);
     line(TURN_POINT, 0, TURN_POINT, OY * 2);
     v0x = v0 * cos(PI / (180 / angle));
