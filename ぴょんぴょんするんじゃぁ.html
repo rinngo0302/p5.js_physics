@@ -15,15 +15,16 @@
     </h1>
     <script src="src/js/ぴょんぴょんするんじゃぁ.js"></script>
     <label> 初速度:
-      <input type="text" id="v0">
+      <input type="text" id="v0" class="param" onchange="changeData()">
     </label>
     <label> 角度:
-      <input type="text" id="angle">
+      <input type="text" id="angle" class="param" onchange="changeData()">
     </label>
     <label> 反発係数:
-      <input type="text" id="e">
+      <input type="text" id="e" class="param" onchange="changeData()">
     </label>
     <button onclick="setData()"> Set </button>
+    <label id="hasSet"> 設定されていません。 </label>
 
   </body>
 </html>

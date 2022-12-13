@@ -3,6 +3,8 @@ const OY = 2000;
 const TURN_POINT = 4000;
 let e = 0.9;
 
+let hasSet = false;
+
 let x = 0;  let y = 400;
 let angle = 60;
 let v0 = 150;
@@ -11,6 +13,12 @@ let v0y;
 let increaseX = 0;
 let increaseY = 0;
 let t = 0;
+
+function changeData()
+{
+    let hasSetEl = document.getElementById("hasSet");
+    hasSetEl.innerText = "設定されていません。";
+}
 
 let startButton;
 let isStart = false;
@@ -25,13 +33,11 @@ function setup() {
 
     startButton = createButton("Start");
     startButton.position(0, 0);
+    startButton.id("startbutton");
     startButton.mousePressed(() => {
-        isStart = true;
-    });
-    startButton = createButton("Stop");
-    startButton.position(250, 0);
-    startButton.mousePressed(() => {
-        isStart = false;;
+        isStart = (isStart) ? false : true;
+        let startbutton = document.getElementById("startbutton");
+        startbutton.innerHTML = "Stop";
     });
 }
 
@@ -50,6 +56,8 @@ function setData()
     v0y = v0 * sin(PI / (180 / angle)) * -1;
 
     console.log(`初速度: ${v0}\n角度: ${angle}\n反発係数: ${e}\nセット完了!!`);
+    let hasSetEl = document.getElementById("hasSet");
+    hasSetEl.innerText = "設定完了！";
 }
 
 let oldT = 0;
@@ -68,7 +76,6 @@ function calc()
         direction *= -1;
         ox = TURN_POINT * countBound;
         hasBpundInTurnPoint = true;
-        // alert(`x: ${x}\ny: ${y}`);
         debug = true;
     }
     if (x <= 0 && increaseX != 0)
@@ -77,7 +84,6 @@ function calc()
         direction *= -1;
         countBound++;
         hasBpundInO = true;
-        // alert(`x: ${x}\ny: ${y}`);
         debug = true;
     }
 
