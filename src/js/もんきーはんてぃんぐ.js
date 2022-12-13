@@ -25,9 +25,37 @@ function setup()
 
     startButton = createButton("Start");
     startButton.position(0, 0);
+    startButton.id("startbutton");
     startButton.mousePressed(() => {
         hasStarted = (hasStarted) ? false : true;
+        let startbutton = document.getElementById("startbutton");
+        startbutton.innerHTML = "Stop";
     });
+}
+
+function setData()
+{
+    let user_v0 = parseFloat(document.getElementById("v0").value);
+    let user_angle = parseFloat(document.getElementById("angle").value);
+    if (isNaN(user_v0) || isNaN(user_angle))
+    {
+        alert("設定するデータの値が正しくありません。");
+        return;
+    }
+    v0 = user_v0; angle = user_angle;
+    v0x = v0 * cos(PI / (180 / angle));
+    v0y = v0 * sin(PI / (180 / angle)) * -1;
+
+    console.log(`初速度: ${v0}\n角度: ${angle}\セット完了!!`);
+    let hasSetEl = document.getElementById("hasSet");
+    setup();
+    hasSetEl.innerText = "設定完了！";
+}
+
+function changeData()
+{
+    let hasSetEl = document.getElementById("hasSet");
+    hasSetEl.innerText = "設定されていません。";
 }
 
 function calc()

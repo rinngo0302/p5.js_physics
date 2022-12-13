@@ -12,6 +12,14 @@
     </main>
     <script src="src/js/もんきーはんてぃんぐ.js"></script>
     <script src="src/js/もんきー.js"></script>
+    <label> 初速度:
+      <input type="text" id="v0" class="param" onchange="changeData()">
+    </label>
+    <label> 角度:
+      <input type="text" id="angle" class="param" onchange="changeData()">
+    </label>
+    <button onclick="setData()"> Set </button>
+    <label id="hasSet"> 設定されていません。 </label>
 
   </body>
 </html>
