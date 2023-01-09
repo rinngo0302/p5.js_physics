@@ -39,6 +39,15 @@ function setup() {
         let startbutton = document.getElementById("startbutton");
         startbutton.innerHTML = "Stop";
     });
+
+    let v0el = document.getElementById("v0");
+    let angleel = document.getElementById("angle");
+    let eel = document.getElementById("e");
+    v0el.value = v0;
+    angleel.value = angle;
+    eel.value = e;
+    hasSet = true;
+    document.getElementById("hasSet").innerHTML = "設定完了！";
 }
 
 function setData()
