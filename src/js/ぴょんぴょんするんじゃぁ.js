@@ -37,7 +37,7 @@ function setup() {
     startButton.mousePressed(() => {
         isStart = (isStart) ? false : true;
         let startbutton = document.getElementById("startbutton");
-        startbutton.innerHTML = "Stop";
+        startbutton.innerHTML = (isStart) ? "Stop" : "Start";
     });
 
     let v0el = document.getElementById("v0");
@@ -48,6 +48,8 @@ function setup() {
     eel.value = e;
     hasSet = true;
     document.getElementById("hasSet").innerHTML = "設定完了！";
+
+    alert("限界まで縮小してください！\n※また、このサイトはPCでないと上手く作動しない可能性があります。");
 }
 
 function setData()
