@@ -49,7 +49,7 @@ function setup() {
     hasSet = true;
     document.getElementById("hasSet").innerHTML = "設定完了！";
 
-    alert("限界まで縮小してください！\n※また、このサイトはPCでないと上手く作動しない可能性があります。");
+    alert("画面を限界まで縮小してください！\n※また、このサイトはPCでないと上手く作動しない可能性があります。");
 }
 
 function setData()
